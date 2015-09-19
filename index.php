@@ -13,7 +13,7 @@ echo "My first PHP script! -- QQ";
 ?>
 
 <a href="test.php">test</a>
-<a href="test.php">test</a>
+<a href="ecc.php">ecc</a>
 
 
 </body>
