@@ -12,7 +12,6 @@
 echo "My first PHP script! -- QQ";
 ?>
 
-
 <a href="test.php">test</a>
 
 

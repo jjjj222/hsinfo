@@ -1,0 +1,13 @@
+#! /bin/csh
+
+git fetch origin
+git merge origin/master
+
+chmod o+r *.php
+
+chmod o+x css
+chmod o+r css/*
+
+chmod o+x pic
+chmod o+r pic/*
+
