@@ -1,0 +1,91 @@
+body {
+    background-color:#FFFFCC;
+    margin-left:10%;
+    margin-right:10%;
+    padding: 20px 20px 20px 20px;
+    border-width: 2px;
+    border-color: black;
+    border-radius: 15px;
+    border-style: dashed;
+
+    /*font-family: "Arial Unicode MS", Arial, sans-serif;*/
+    font-family: Arial, sans-serif;
+    font-size: large;
+    color: black;
+
+    line-height: 1.5em;
+}
+
+header {
+    color           : rgb(0,0,155);
+    font-size       : 260%;
+    text-align      : center;
+    border-bottom   : thin dotted #777777;
+    font-weight     : bold;
+}
+
+section {
+    padding : 5px 5px 5px 5px;
+}
+
+h1 {
+    font-size: 200%;
+}
+
+h2 {
+    font-size: 170%;
+}
+
+h3 {
+    font-size: 140%;
+}
+
+h4 {
+    font-size: 110%;
+}
+
+ul {
+    list-style-type : circle;
+}
+
+em {
+    color       : red;
+    font-style  : normal;
+    font-weight : bold;
+}
+
+a : hover {
+    color   : #FF00FF;
+}
+
+table {
+    width   : 100%;
+    border  : thin solid black;
+    table-layout    : fixed;
+    text-align  : center;    
+}
+
+td, th {
+    /* border  : thin dotted gray; */
+    border  : thin solid;
+    padding : 5px;
+}
+
+th {
+
+}
+
+tr.break {
+    /* background-color:#FFCCCC; */
+}
+
+tr.work {
+    background-color    : #FFFFFF;
+}
+
+th.weekday {
+    width   : 12%;
+}
+
+td.time {
+}
