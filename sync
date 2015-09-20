@@ -11,3 +11,5 @@ chmod o+r css/*
 chmod o+x pic
 chmod o+r pic/*
 
+chmod o+x data
+chmod o+r data/*
