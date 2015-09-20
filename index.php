@@ -9,31 +9,6 @@
 <body>
 
 <?php
-echo "My first PHP script! -- QQ";
-?>
-
-<a href="test.php">test</a>
-<a href="ecc.php">ecc</a>
-
-</br>
-<?php 
-echo "<hr>";
-echo $_SERVER['PHP_SELF'];
-echo "<br>";
-echo $_SERVER['SERVER_NAME'];
-echo "<br>";
-echo $_SERVER['HTTP_HOST'];
-echo "<br>";
-echo $_SERVER['HTTP_REFERER'];
-echo "<br>";
-echo $_SERVER['HTTP_USER_AGENT'];
-echo "<br>";
-echo $_SERVER['SCRIPT_NAME'];
-echo "<br>";
-echo "<hr>";
-?>
-
-<?php
 include "db/login.php";
 
 $link = mysql_connect("$servername", "$username", "$password");
@@ -41,6 +16,32 @@ if (!$link) {
     die('Could not connect: ' . mysql_error());
 }
 echo 'Connected successfully';
+@mysql_select_db($database) or die( "Unable to select database");
+
+$query = "SELECT * FROM Persons";
+
+$result = mysql_query($query);
+$num = mysql_numrows($result);
+echo "$num";
+echo "<hr>";
+
+##for ($i = 0; i < $num; ++$i) {
+$i = 0;
+while ($i < $num) {
+#    #$tuple = array(0, "", "", "", "");
+    $id = mysql_result($result, $i, "PersonID");
+    $last_name = mysql_result($result, $i, "LastName");
+    $first_name = mysql_result($result, $i, "FirstName");
+    $address = mysql_result($result, $i, "Address");
+    $city = mysql_result($result, $i, "City");
+#
+    echo "$id, $last_name, $first_name, $address, $city";
+#
+    #echo "$id";
+    echo "<br>";
+$i++;
+}
+
 mysql_close($link);
 
 // Create connection
@@ -64,6 +65,24 @@ mysql_close($link);
 #    {
 #    echo "Connection failed: " . $e->getMessage();
 #    }
+?>
+
+</br>
+<?php 
+echo "<hr>";
+echo $_SERVER['PHP_SELF'];
+echo "<br>";
+echo $_SERVER['SERVER_NAME'];
+echo "<br>";
+echo $_SERVER['HTTP_HOST'];
+echo "<br>";
+echo $_SERVER['HTTP_REFERER'];
+echo "<br>";
+echo $_SERVER['HTTP_USER_AGENT'];
+echo "<br>";
+echo $_SERVER['SCRIPT_NAME'];
+echo "<br>";
+echo "<hr>";
 ?>
 
 </body>

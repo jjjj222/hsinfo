@@ -1,0 +1,17 @@
+INSERT INTO Persons(
+    PersonID,
+    LastName,
+    FirstName,
+    Address,
+    City
+)
+VALUES (1, 'q', 'oo', 'here', 'somecity');
+
+INSERT INTO Persons(
+    PersonID,
+    LastName,
+    FirstName,
+    Address,
+    City
+)
+VALUES (2, 'x', 'dd', 'nono', 'acity');
