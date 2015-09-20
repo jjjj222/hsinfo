@@ -1,0 +1,6 @@
+LOAD DATA INFILE '/Users/jjjj222/Sites/hsinfo/data/test.csv' 
+INTO TABLE Cards
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;

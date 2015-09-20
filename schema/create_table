@@ -1,0 +1,14 @@
+CREATE TABLE Cards
+(
+    Id varchar(255),
+    Name varchar(255),
+    Class varchar(255),
+    Rarity varchar(255),
+    Type varchar(255),
+    Race varchar(255),
+    Mana varchar(255),
+    Attack varchar(255),
+    Health varchar(255),
+    SetName varchar(255),
+    Ability varchar(255)
+);
