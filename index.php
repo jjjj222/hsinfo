@@ -36,6 +36,13 @@ echo "<hr>";
 <?php
 include "db/login.php";
 
+$link = mysql_connect("$servername", "$username", "$password");
+if (!$link) {
+    die('Could not connect: ' . mysql_error());
+}
+echo 'Connected successfully';
+mysql_close($link);
+
 // Create connection
 #$conn = new mysqli($servername, $username, $password);
 #
@@ -44,17 +51,19 @@ include "db/login.php";
 #    die("Connection failed: " . $conn->connect_error);
 #}
 #echo "Connected successfully";
-try {
-    #$conn = new PDO("mysql:host=$servername;dbname=$db_name", $username, $password);
-    $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected successfully";
-    }
-catch(PDOException $e)
-    {
-    echo "Connection failed: " . $e->getMessage();
-    }
+
+
+#try {
+#    #$conn = new PDO("mysql:host=$servername;dbname=$db_name", $username, $password);
+#    $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+#    // set the PDO error mode to exception
+#    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+#    echo "Connected successfully";
+#    }
+#catch(PDOException $e)
+#    {
+#    echo "Connection failed: " . $e->getMessage();
+#    }
 ?>
 
 </body>
