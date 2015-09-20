@@ -17,6 +17,7 @@ echo "My first PHP script! -- QQ";
 
 </br>
 <?php 
+echo "<hr>";
 echo $_SERVER['PHP_SELF'];
 echo "<br>";
 echo $_SERVER['SERVER_NAME'];
@@ -28,8 +29,28 @@ echo "<br>";
 echo $_SERVER['HTTP_USER_AGENT'];
 echo "<br>";
 echo $_SERVER['SCRIPT_NAME'];
+echo "<br>";
+echo "<hr>";
 ?>
 
+<?php
+if ($_SERVER['SERVER_NAME'] == "localhost") {
+    $servername = "localhost";
+} else {
+    $servername = "database2.cs.tamu.edu";
+}
+$username = "jjjj222";
+$password = "";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
+?>
 
 </body>
 </html>
