@@ -1,8 +1,1 @@
-CREATE TABLE Persons
-(
-    PersonID int,
-    LastName varchar(255),
-    FirstName varchar(255),
-    Address varchar(255),
-    City varchar(255)
-);
+INSERT INTO Card (setType, setSeq, id, name, type, faction, rarity, cost, attack, health, text, flavor, artist, collectible, howToGetGold, mechanics) VALUES ('Basic', 1, 'EX1_066', 'Acidic Swamp Ooze', 'Minion', 'Alliance', 'Common', 2, 3, 2, 'Battlecry: Destroy your opponents weapon.', 'Oozes love Flamenco. Don't ask.', 'Chris Rahn', 1, 'Unlocked at Rogue Level 57.', 'Battlecry');

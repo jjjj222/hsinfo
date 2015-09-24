@@ -1,0 +1,25 @@
+CREATE TABLE Card
+(
+    setType         CHAR(40),
+    setSeq          INT,
+    id              CHAR(20)        PRIMARY KEY,
+    name            VARCHAR(255),
+    type            CHAR(20),
+    faction         CHAR(20),
+    rarity          CHAR(20),
+    cost            INT,
+    attack          INT,
+    durability      INT,
+    health          INT,
+    elite           BOOLEAN,
+    race            CHAR(20),
+    text            VARCHAR(255),
+    inPlayText      CHAR(40),
+    flavor          VARCHAR(255),
+    artist          VARCHAR(255),
+    collectible     BOOLEAN,
+    playerClass     CHAR(20),
+    howToGet        VARCHAR(255),
+    howToGetGold    VARCHAR(255),
+    mechanics       VARCHAR(255)
+);
