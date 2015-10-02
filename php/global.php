@@ -43,5 +43,18 @@ $CARD_TABLE_INPORTANT_ATTR = array(
 );
 
 $DECK_TABLE_NAME = "Deck"; 
+$DECK_TABLE_ATTR = array(
+    "id",
+    "name",
+    "class",
+    "creator",
+    "num",
+    "link",
+    "comment"
+);
+$DECK_SINGLE_TABLE_ATTR = array(
+    "id",
+    "num",
+);
 ?>
 

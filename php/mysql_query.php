@@ -63,10 +63,6 @@ function create_table($table) {
     exec_mysql_query($query);
 }
 
-#function drop_deck_table($file_name) {
-#    drop_table(get_deck_table_name($file_name));
-#}
-
 function create_deck_table($table) {
     $query = "CREATE TABLE $table (id CHAR(20) PRIMARY KEY, num INT);";
     exec_mysql_query($query);
@@ -76,8 +72,6 @@ function exec_mysql_query($query) {
     $result = mysql_query($query);
     if ( $result === false ){
         error_msg($query);
-        #echo "ERROR!! " . $query;
-        #echo "<br>";
     }
 }
 

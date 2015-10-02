@@ -10,6 +10,11 @@ function read_file($file_name) {
     return $content;
 }
 
+function print_msg($msg) {
+    echo $msg;
+    echo "<br>";
+}
+
 function error_msg($msg) {
     echo "ERROR!! " . $msg;
     echo "<br>";

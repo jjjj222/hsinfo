@@ -4,55 +4,92 @@
         <meta charset="utf-8">
         <title>608 - project 1</title>
         <link rel="shortcut icon" href="pic/cacophony.jpg">
+        <link type="text/css" rel="stylesheet" href="css/navi.css">
+        <link type="text/css" rel="stylesheet" href="css/layout.css">
         <!-- <link type="text/css" rel="stylesheet" href="css/default.css"> -->
-        <link type="text/css" rel="stylesheet" href="css/table.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     </head>
 <body>
+    <!-- <p id="change2" onclick="changeText()">test</p> -->
+    <script>
+        function changeText() {
+            document.getElementById("main").innerHTML = "<p> changed!  qQ </p>";
+        }
+    </script>
 
-<?php
-include "db/login.php";
-include "php/html.php";
-include "php/util.php";
-include "php/global.php";
+    <script>
+    $(document).ready(function(){
+        $("header").click(function(){
+            $("li").hide();
+        });
+    });
+    </script>
 
-$link = @mysql_connect("$servername", "$username", "$password");
-if (!$link) {
-    die('Could not connect: ' . mysql_error());
-}
-@mysql_select_db($database) or die( "Unable to select database");
+    <script>
+    $(document).ready(function(){
+        $("p").click(function(){
+            $(this).hide();
+        });
+    });
+    </script>
 
-#print_table($CARD_TABLE_NAME, $CARD_TABLE_ATTR);
-print_table($CARD_TABLE_NAME, $CARD_TABLE_INPORTANT_ATTR);
-#$file_name = "deck/druid_1";
-#$dir    = 'data/deck';
-#$files = scandir($dir);
-#
-#foreach ($files as $file_name) {
-#    if ($file_name == "." || $file_name == "..") {
-#        continue;
-#    }
-#    #echo $file_name;
-#    #echo "<br>";
-#
-#    $deck_file = read_file("$dir/$file_name");
-#    $deck_file_line_arr = explode("\n", $deck_file);
-#
-#    $i = 0;
-#    foreach ($deck_file_line_arr as $line) {
-#        #echo $line;
-#        #echo "<br>";
-#        $tokens = explode(' ', $line);
-#        foreach ($tokens as $token) {
-#            echo $token;
-#            echo "<br>";
-#        }
-#        $i++;
-#    }
-#    echo "<br>";
-#}
+    <header>
+        header
+    </header>
+    <nav>
+        <ul>
+          <li><a href="#home" onclick="changeText()">Home</a></li>
+          <li><a href="#news">News</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#nono">NONO</a></li>
+          <li><a href="#qq">QQ</a></li>
+        </ul>
+    </nav>
 
-#print_r($files1);
-?>
+    <!--
+    <nav id="nav2">
+        <ul>
+          <li><a href="#home" onclick="changeText()">Home</a></li>
+          <li><a href="#news">News</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#nono">NONO</a></li>
+          <li><a href="">QQ</a></li>
+        </ul>
+    </nav>
+    -->
 
+    <aside>
+        QQ
+    </aside>
+
+    <section id="main">
+        <h1>London</h1>
+        <p>
+        London is the capital city of England. It is the most populous city in the United Kingdom,
+        with a metropolitan area of over 13 million inhabitants.
+        </p>
+        <p>If you click on me, I will disappear.</p>
+        <p>Click me away!</p>
+        <p>Click me too!</p>
+    </section>
+
+    <script>
+    $(document).ready(function(){
+        $("button").click(function(){
+            $("#div1").load("index.php");
+        });
+    });
+    </script>
+
+    <button>Get External Content</button>
+    <div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
+
+
+
+    <footer>
+        footer
+    </footer>
 </body>
 </html>

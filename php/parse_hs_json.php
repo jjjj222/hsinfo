@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>608 - project 1</title>
-    <link rel="shortcut icon" href="../pic/cacophony.jpg">
-    <link type="text/css" rel="stylesheet" href="../css/default.css">
+    <!-- <link rel="shortcut icon" href="../pic/cacophony.jpg"> -->
+    <!-- <link type="text/css" rel="stylesheet" href="../css/default.css"> -->
 </head>
 <body>
 
@@ -38,6 +38,9 @@ $json_arr = json_decode($json_str);
 drop_table($CARD_TABLE_NAME);
 create_table($CARD_TABLE_NAME);
 insert_card_data($CARD_TABLE_NAME, $json_arr);
+
+# msg
+print_msg("reset $CARD_TABLE_NAME");
 
 # close 
 mysql_close($link);

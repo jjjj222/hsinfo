@@ -1,5 +1,5 @@
 <?php
-function print_table($table, $attributes) {
+function print_table($table, $attributes, $callback=NULL) {
     $attr_list_str = implode(', ', $attributes);
     $query = "SELECT $attr_list_str FROM $table";
 
@@ -20,13 +20,20 @@ function print_table($table, $attributes) {
         echo "<tr>";
         foreach ($attributes as $attr) {
             echo "<td>";
-            echo mysql_result($result, $i, $attr);
+            if ($callback != NULL) {
+                $value = mysql_result($result, $i, $attr);
+                $callback($attr, $value);
+            } else {
+                echo mysql_result($result, $i, $attr);
+            }
             echo "</td>";
         }
         echo "</tr>";
         $i++;
     }
     echo "</table>";
+
+    return $num;
 }
 
 ?>

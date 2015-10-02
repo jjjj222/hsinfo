@@ -10,3 +10,12 @@ td, th {
     border  : thin solid;
     /* padding : 5px; */
 }
+
+aside {
+    /* line-height:30px; */
+    /* background-color:#eeeeee; */
+    /* height:300px; */
+    /* width:100px; */
+    float:right;
+    padding:5px;
+}

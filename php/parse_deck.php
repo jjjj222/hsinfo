@@ -34,6 +34,8 @@ $dir    = '../data/deck';
 # rebuild data
 drop_table($DECK_TABLE_NAME);
 create_table($DECK_TABLE_NAME);
+print_msg("reset $DECK_TABLE_NAME");
+
 insert_deck_data($DECK_TABLE_NAME, $dir);
 
 # close 
@@ -73,6 +75,7 @@ function insert_deck_data($table, $dir) {
         drop_table($deck_table_name);
         create_deck_table($deck_table_name);
         insert_card_to_deck($deck_table_name, $card);
+        print_msg("reset $deck_table_name");
     }
 }
 
