@@ -52,4 +52,37 @@ function mysql_insert_str($table, $data) {
 }
 
 
+function drop_table($table) {
+    $query = "DROP TABLE $table;";
+    exec_mysql_query($query);
+}
+
+function create_table($table) {
+    $file_name = "../schema/create_" . "$table" . "_table";
+    $query = read_file($file_name);
+    exec_mysql_query($query);
+}
+
+#function drop_deck_table($file_name) {
+#    drop_table(get_deck_table_name($file_name));
+#}
+
+function create_deck_table($table) {
+    $query = "CREATE TABLE $table (id CHAR(20) PRIMARY KEY, num INT);";
+    exec_mysql_query($query);
+}
+
+function exec_mysql_query($query) {
+    $result = mysql_query($query);
+    if ( $result === false ){
+        error_msg($query);
+        #echo "ERROR!! " . $query;
+        #echo "<br>";
+    }
+}
+
+function get_deck_table_name($file_name) {
+    return "Deck_$file_name";
+}
+
 ?>

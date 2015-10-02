@@ -20,6 +20,8 @@ chmod o+r pic/*
 
 chmod o+x data
 chmod o+r data/*
+chmod o+x data/deck
+chmod o+r data/deck/*
 
 
 #------------------------------------------------------------------------------

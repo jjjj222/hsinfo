@@ -1,0 +1,10 @@
+CREATE TABLE Deck
+(
+    id              CHAR(20)        PRIMARY KEY,
+    name            VARCHAR(255),
+    class           CHAR(20),
+    creator         CHAR(40),
+    num             INT,
+    link            VARCHAR(255),
+    comment         VARCHAR(255)
+);

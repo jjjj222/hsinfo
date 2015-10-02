@@ -12,26 +12,22 @@
 #------------------------------------------------------------------------------
 #   include
 #------------------------------------------------------------------------------
-include "mysql_query_str.php";
+include "mysql_query.php";
 include "../db/login.php";
 include "global.php";
 ?>
 
 <?php
 #------------------------------------------------------------------------------
-#   link mysql
+#   run
 #------------------------------------------------------------------------------
-$link = mysql_connect("$servername", "$username", "$password");
+# link mysql
+$link = @mysql_connect("$servername", "$username", "$password");
 if (!$link) {
     die('Could not connect: ' . mysql_error());
 }
 @mysql_select_db($database) or die( "Unable to select database");
-?>
 
-<?php
-#------------------------------------------------------------------------------
-#   run
-#------------------------------------------------------------------------------
 # decode json
 $file_name = "../data/AllSets.json";
 $json_str = read_file($file_name);
@@ -41,25 +37,17 @@ $json_arr = json_decode($json_str);
 # rebuild data
 drop_table($CARD_TABLE_NAME);
 create_table($CARD_TABLE_NAME);
-insert_data($CARD_TABLE_NAME, $json_arr);
+insert_card_data($CARD_TABLE_NAME, $json_arr);
+
+# close 
+mysql_close($link);
 ?>
 
 <?php
 #------------------------------------------------------------------------------
 #   build data
 #------------------------------------------------------------------------------
-function drop_table($table) {
-    $query = "DROP TABLE $table;";
-    exec_mysql_query($query);
-}
-
-function create_table($table) {
-    $file_name = "../schema/create_" . "$table" . "_table";
-    $query = read_file($file_name);
-    exec_mysql_query($query);
-}
-
-function insert_data($table, $arr) {
+function insert_card_data($table, $arr) {
     foreach($arr as $set_type => $card_obj) {
         $card_array = (array)$card_obj;
         foreach($card_array as $set_seq => $card_info_obj) {
@@ -93,14 +81,6 @@ function insert_data($table, $arr) {
             #    exec_mysql_query($query);
             #}
         }
-    }
-}
-
-function exec_mysql_query($query) {
-    $result = mysql_query($query);
-    if ( $result === false ){
-        echo "ERROR!! " . $query;
-        echo "<br>";
     }
 }
 

@@ -1,0 +1,12 @@
+table {
+    /* width   : 100%; */
+    border  : thin solid black;
+    /* table-layout    : fixed; */
+    text-align  : center;    
+}
+
+td, th {
+    /* border  : thin dotted gray; */
+    border  : thin solid;
+    /* padding : 5px; */
+}

@@ -10,4 +10,13 @@ function read_file($file_name) {
     return $content;
 }
 
+function error_msg($msg) {
+    echo "ERROR!! " . $msg;
+    echo "<br>";
+}
+
+function echo_br() {
+    echo "<br>";
+}
+
 ?>

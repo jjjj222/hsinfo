@@ -1,16 +1,20 @@
 body {
     background-color:#FFFFCC;
-    margin-left:10%;
-    margin-right:10%;
-    padding: 20px 20px 20px 20px;
-    border-width: 2px;
+    /* margin-left:10%; */
+    /* margin-right:10%; */
+    /* padding: 20px 20px 20px 20px; */
+    margin-left:1%;
+    margin-right:1%;
+    padding: 2px 2px 2px 2px;
+    /* border-width: 2px; */
     border-color: black;
-    border-radius: 15px;
-    border-style: dashed;
+    /* border-radius: 15px; */
+    /* border-style: dashed; */
 
     /*font-family: "Arial Unicode MS", Arial, sans-serif;*/
     font-family: Arial, sans-serif;
-    font-size: large;
+    /* font-size: large; */
+    font-size: small;
     color: black;
 
     line-height: 1.5em;
@@ -48,6 +52,18 @@ ul {
     list-style-type : circle;
 }
 
+ul.navibar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li.navibar {
+    float: left;
+}
+
+
 em {
     color       : red;
     font-style  : normal;
@@ -68,7 +84,7 @@ table {
 td, th {
     /* border  : thin dotted gray; */
     border  : thin solid;
-    padding : 5px;
+    /* padding : 5px; */
 }
 
 th {

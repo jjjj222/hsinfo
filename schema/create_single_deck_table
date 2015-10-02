@@ -1,0 +1,5 @@
+CREATE TABLE xx
+(
+    id              CHAR(20)        PRIMARY KEY,
+    num             INT,
+);
