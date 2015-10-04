@@ -15,6 +15,9 @@ chmod o+r php/*
 chmod o+x css
 chmod o+r css/*
 
+chmod o+x js
+chmod o+r js/*
+
 chmod o+x pic
 chmod o+r pic/*
 

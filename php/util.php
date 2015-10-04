@@ -30,6 +30,15 @@ function check_single_tuple($num, $value) {
     }
 }
 
+function get_current_post_value($name) {
+    #print_msg($name);
+    if (isset($_POST[$name])) {
+        return $_POST[$name];
+    } else {
+        return "";
+    }
+}
+
 function get_current_get_value($name) {
     if (isset($_GET[$name])) {
         return $_GET[$name];

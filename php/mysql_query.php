@@ -100,8 +100,13 @@ function get_deck_table_name($file_name) {
     return "Deck_$file_name";
 }
 
-function get_attribute_values($table, $attr) {
-    $query = "SELECT DISTINCT $attr FROM $table ORDER BY $attr;";
+function get_attribute_values($table, $attr, $constraint="") {
+    #$query = "SELECT DISTINCT $attr FROM $table ORDER BY $attr;";
+    $query = "SELECT DISTINCT $attr FROM $table";
+    if ($constraint != "") {
+        $query .= " WHERE $constraint";
+    }
+    $query .= " ORDER BY $attr;";
     #print_msg($query);
 
     $result = mysql_query($query);

@@ -59,10 +59,12 @@ function print_single_deck_table_callback($attr, $value) {
     }
 }
 
-function print_form_select($attr, $values, $default="") {
+function print_form_select($attr, $values, $default="", $with_empty=true) {
 
     echo "<select name=\"$attr\">";
-    echo "<option value=\"\"></option>";
+    if ($with_empty) {
+        echo "<option value=\"\"></option>";
+    }
     foreach($values as $value) {
         echo "<option value=\"$value\"";
         if ($value == $default) {
@@ -83,8 +85,8 @@ function print_all_form_select($table, $attributes) {
     }
 }
 
-function print_form_input($attr, $default="") {
-    echo "<input type=\"text\" name=\"$attr\" value=\"$default\">";
+function print_form_input($attr, $default="", $maxlength="255") {
+    echo "<input type=\"text\" name=\"$attr\" value=\"$default\" maxlength=\"$maxlength\">";
 }
 
 function print_all_form_input($attributes) {

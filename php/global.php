@@ -70,6 +70,8 @@ $CARD_TABLE_TYPE_ATTR = array(
     "text"
 );
 
+$CARD_VALID_ID_CONSTRAINT = "id RLIKE '[0-9_][0-9]$'";
+
 $DECK_TABLE_NAME = "Deck"; 
 $DECK_TABLE_ATTR = array(
     "id",

@@ -4,11 +4,13 @@
         <meta charset="utf-8">
         <title>608 - project 1</title>
         <link rel="shortcut icon" href="pic/cacophony.jpg">
+        <link type="text/css" rel="stylesheet" href="css/color.css">
         <link type="text/css" rel="stylesheet" href="css/navi.css">
         <link type="text/css" rel="stylesheet" href="css/layout.css">
         <link type="text/css" rel="stylesheet" href="css/table.css">
         <!-- <link type="text/css" rel="stylesheet" href="css/default.css"> -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="js/util.js"></script>
 
         <!-- <script>
             function changeText() {
@@ -136,7 +138,7 @@
         //load_page();
         //if(window.location.hash) {
             //$("#main").load("php/home.php");
-            load_page();
+            //load_page();
         //}
     </script>
     <script>
@@ -183,7 +185,8 @@
     </footer>
 
     <script>
-        load_page();
+        //load_page();
+        $("#main").load("php/add_form.php");
     </script>
 </body>
 </html>
