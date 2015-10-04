@@ -19,7 +19,7 @@ if (!$link) {
 @mysql_select_db($database) or die( "Unable to select database");
 
 #print_table($CARD_TABLE_NAME, $CARD_TABLE_ATTR);
-$total = print_table($CARD_TABLE_NAME, $CARD_TABLE_INPORTANT_ATTR);
+$total = print_table($CARD_TABLE_NAME, $CARD_TABLE_ATTR);
 print_msg("total = $total");
 
 # close 

@@ -27,7 +27,7 @@ $CARD_TABLE_ATTR = array(
     "howToGetGold",
     "mechanics"
 );
-$CARD_TABLE_INPORTANT_ATTR = array(
+$CARD_TABLE_IMPORTANT_ATTR = array(
     "setType",
     "id",
     "name",
@@ -41,6 +41,34 @@ $CARD_TABLE_INPORTANT_ATTR = array(
     "race",
     "text"
 );
+$CARD_TABLE_SHOW_ATTR = array(
+    "setType",
+    "name",
+    "type",
+    "rarity",
+    "playerClass",
+    "cost",
+    "attack",
+    "durability",
+    "health",
+    "race",
+    "text"
+);
+$CARD_TABLE_SELECT_ATTR = array(
+    "setType",
+    "type",
+    "rarity",
+    "playerClass",
+    "cost",
+    "attack",
+    "durability",
+    "health",
+    "race"
+);
+$CARD_TABLE_TYPE_ATTR = array(
+    "name",
+    "text"
+);
 
 $DECK_TABLE_NAME = "Deck"; 
 $DECK_TABLE_ATTR = array(
@@ -51,6 +79,22 @@ $DECK_TABLE_ATTR = array(
     "num",
     "link",
     "comment"
+);
+$DECK_TABLE_SHOW_ATTR = array(
+    "name",
+    "class",
+    "creator",
+    "num",
+    "link",
+    "comment"
+);
+$DECK_TABLE_SELECT_ATTR = array(
+    "class",
+    "creator",
+    "num"
+);
+$DECK_TABLE_TYPE_ATTR = array(
+    "name",
 );
 $DECK_SINGLE_TABLE_ATTR = array(
     "id",

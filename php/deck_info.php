@@ -6,6 +6,8 @@
     </head>
 <body>
 
+<!-- <a href="../info.php">back to info</a> -->
+
 <?php
 include "../db/login.php";
 include "mysql_query.php";
@@ -38,23 +40,6 @@ print_msg("total = $total");
 mysql_close($link);
 ?>
 
-<?php
-function print_deck_table_callback($attr, $value) {
-    if ($attr == "id") {
-        $link = "deck_info.php?id=$value";
-        echo "<a href=\"$link\">";
-        echo $value;
-        echo "</a>";
-    } elseif ($attr == "link") {
-        echo "<a href=\"$value\">";
-        echo $value;
-        echo "</a>";
-    } else {
-        echo $value;
-    }
-}
-
-?>
 </body>
 </html>
 

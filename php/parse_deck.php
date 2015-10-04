@@ -89,11 +89,12 @@ function insert_card_to_deck($table, $card) {
 
         $result = mysql_query($query);
         $count = @mysql_numrows($result);
-        if ($count != 1) {
-            error_msg("multiple($count) \"$name\"");
-            #echo "ERROR: multiple $name";
-            #echo "<br>"
-        }
+        check_single_tuple($count, $name);
+        #if ($count != 1) {
+        #    error_msg("multiple($count) \"$name\"");
+        #    #echo "ERROR: multiple $name";
+        #    #echo "<br>"
+        #}
         $id = mysql_result($result, 0, "id");
         #echo "id: $id, num: $num";
         #echo "<br>";
@@ -112,17 +113,16 @@ function deck_get_name_and_creator($line) {
     $tokens = explode(' ', $line);
     $name_arr = array();
     $creator_arr = array();
-    $to_name = false;
+    $to_name = true;
     foreach ($tokens as $token) {
         if ($to_name) {
-            array_push($name_arr, $token);
-        } else {
             if ($token == "by") {
-                $to_name = true;
+                $to_name = false;
             } else {
-                array_push($creator_arr, $token);
-
+                array_push($name_arr, $token);
             }
+        } else {
+            array_push($creator_arr, $token);
         }
     }
 

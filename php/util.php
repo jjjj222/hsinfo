@@ -1,6 +1,6 @@
 <?php
-function get_sql_array_str($arr) {
-   return "(" . implode(", ", $arr) . ")";
+function get_sql_array_str($arr, $del = ", ") {
+   return "(" . implode($del, $arr) . ")";
 }
 
 function read_file($file_name) {
@@ -22,6 +22,32 @@ function error_msg($msg) {
 
 function echo_br() {
     echo "<br>";
+}
+
+function check_single_tuple($num, $value) {
+    if ($num != 1) {
+        error_msg("multiple($num) \"$value\"");
+    }
+}
+
+function get_current_get_value($name) {
+    if (isset($_GET[$name])) {
+        return $_GET[$name];
+    } else {
+        return "";
+    }
+}
+
+function get_all_get_values($names) {
+    $values = array();
+    foreach($names as $name) {
+        $value = get_current_get_value($name);
+        $value = str_replace(";", "", $value);
+        if ($value != "") {
+            $values[$name] = $value;
+        }
+    }
+    return $values;
 }
 
 ?>
