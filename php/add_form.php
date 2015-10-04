@@ -21,6 +21,8 @@ mysql_close($link);
 
 <?php
 function print_add_form() {
+    global $CARD_TABLE_NAME, $CARD_VALID_ID_CONSTRAINT;
+
     $is_post = false;
     $error = false;
 
@@ -38,34 +40,18 @@ function print_add_form() {
             $error = true;
         }
     }
-    #var_dump($data);
-    #var_dump($error);
 
-    global $CARD_TABLE_NAME, $CARD_VALID_ID_CONSTRAINT;
-
-    #echo "<form method=\"post\" action=\"add_deck.php\">";
     echo "<form id=\"add_form\">";
-
     print_add_form_input_line("name", $is_post);
-    #echo "name: ";
-    #print_form_input("name", get_current_post_value("name"));
-    #if ($is_post) {
-    #    check_empty(get_current_post_value("name"));
-    #}
-    #echo "<br>";
+
     echo "class: ";
     $class_values = get_attribute_values($CARD_TABLE_NAME, "playerClass");
     print_form_select("class", $class_values, get_current_post_value("class"), false);
     echo "<br>";
 
     print_add_form_input_line("creator", $is_post, 40);
-    #echo "creator: ";
-    #print_form_input("creator", get_current_post_value("creator"), 40);
-    #echo "<br>";
     print_add_form_input_line("link", $is_post);
-    #echo "link: ";
-    #print_form_input("link", get_current_post_value("link"));
-    #echo "<br>";
+
     echo "comment: ";
     $comment_value = get_current_post_value("comment");
     echo "<textarea name=\"comment\" maxlength=\"255\">$comment_value</textarea>";
@@ -85,7 +71,7 @@ function print_add_form() {
     }
     echo "</datalist>";
 
-    for ($i = 1; $i <= 10; ++$i) {
+    for ($i = 1; $i <= 20; ++$i) {
         $card_value = get_current_post_value("card_$i");
         echo "card_$i: <input list=\"card_name\" name=\"card_$i\" value=\"$card_value\">";
         $card_num_value = get_current_post_value("card_num_$i");
@@ -122,6 +108,10 @@ function print_add_form() {
         $data["id"] = get_deck_new_id($data["class"]);
 
         if ($data["num"] != 0) {
+            foreach ($data as $key => $value) {
+                $data[$key] = test_input($value);
+            } 
+
             create_new_deck($data, $card);
             echo "Add deck \"" . $data["name"] . "\" successfully";
             echo "<br>";

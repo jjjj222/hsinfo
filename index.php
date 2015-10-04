@@ -185,8 +185,8 @@
     </footer>
 
     <script>
-        //load_page();
-        $("#main").load("php/add_form.php");
+        load_page();
+        //$("#main").load("php/add_form.php");
     </script>
 </body>
 </html>
