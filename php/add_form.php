@@ -47,11 +47,12 @@ function print_add_form() {
     echo "class: ";
     $class_values = get_attribute_values($CARD_TABLE_NAME, "playerClass");
     print_form_select("class", $class_values, get_current_post_value("class"), false);
-    echo "<br>";
+    #echo "<br>";
 
     print_add_form_input_line("creator", $is_post, 40);
     print_add_form_input_line("link", $is_post);
 
+    echo "<br>";
     echo "comment: ";
     $comment_value = get_current_post_value("comment");
     echo "<textarea name=\"comment\" maxlength=\"255\">$comment_value</textarea>";
@@ -71,9 +72,10 @@ function print_add_form() {
     }
     echo "</datalist>";
 
-    for ($i = 1; $i <= 20; ++$i) {
+    for ($i = 1; $i <= 25; ++$i) {
         $card_value = get_current_post_value("card_$i");
-        echo "card_$i: <input list=\"card_name\" name=\"card_$i\" value=\"$card_value\">";
+        #echo "card $i: <input list=\"card_name\" name=\"card_$i\" value=\"$card_value\">";
+        echo "<input list=\"card_name\" name=\"card_$i\" value=\"$card_value\">";
         $card_num_value = get_current_post_value("card_num_$i");
         echo "<input type=\"number\" name=\"card_num_$i\" min=\"1\" max=\"5\" value=\"$card_num_value\">";
         if ($card_value != "") {
@@ -90,7 +92,11 @@ function print_add_form() {
             }
         }
 
-        echo "<br>";
+        if (($i) % 5 == 0) {
+            echo "<br>";
+        } else {
+            echo "&nbsp;";
+        }
     }
     $data["num"] = deck_count_card($card);
     if ($is_post) {
@@ -136,7 +142,9 @@ function print_add_form_input_line($attr, $is_post, $maxlength=255) {
     if ($is_post) {
         check_empty($value);
     }
-    echo "<br>";
+    #echo "<br>";
+    echo "&nbsp;";
+    echo "&nbsp;";
 }
 
 function check_empty($value) {

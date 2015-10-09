@@ -47,6 +47,7 @@ nav ul li {
     width: 16.6667%; /* fallback for non-calc() browsers */
     width: calc(100% / 6);
     box-sizing: border-box;
+    font-size: 150%;
 }
 
 nav ul li:first-child {

@@ -22,7 +22,7 @@ function print_form() {
     global $DECK_TABLE_NAME, $DECK_TABLE_SELECT_ATTR, $CARD_TABLE_SHOW_ATTR, $DECK_TABLE_TYPE_ATTR;
     echo "<form id=\"deck_form\">";
     print_all_form_select($DECK_TABLE_NAME, $DECK_TABLE_SELECT_ATTR);
-    echo "<br>";
+    #echo "<br>";
     print_all_form_input($DECK_TABLE_TYPE_ATTR);
     echo "</form>";
 

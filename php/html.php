@@ -114,12 +114,17 @@ function print_all_form_select($table, $attributes) {
         $values = get_attribute_values($table, $attr);
         echo "$attr: ";
         print_form_select($attr, $values, get_current_get_value($attr));
-        #echo "<br>";
+        echo "&nbsp;";
+        echo "&nbsp;";
+        echo "&nbsp;";
     }
 }
 
 function print_form_input($attr, $default="", $maxlength="255") {
     echo "<input type=\"text\" name=\"$attr\" value=\"$default\" maxlength=\"$maxlength\">";
+    echo "&nbsp;";
+    echo "&nbsp;";
+    echo "&nbsp;";
 }
 
 function print_all_form_input($attributes) {
