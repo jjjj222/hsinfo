@@ -15,18 +15,6 @@ echo "<aside id=\"deck_table_side\"></aside>";
 $constraints = get_all_get_values($DECK_TABLE_SHOW_ATTR);
 print_deck_select_table($DECK_TABLE_NAME, $DECK_TABLE_SHOW_ATTR, $constraints);
 
-#if (array_key_exists("id", $_GET)) {
-#    $id = $_GET["id"];
-#    $table = get_deck_table_name($id);
-#    if(mysql_num_rows(mysql_query("SHOW TABLES LIKE '$table'")) == 1) {
-#        echo "<aside>";
-#        print_msg($id);
-#        $total = print_table($table, $DECK_SINGLE_TABLE_ATTR);
-#        print_msg("total = $total");
-#        echo "</aside>";
-#    }
-#}
-
 mysql_close($link);
 ?>
 

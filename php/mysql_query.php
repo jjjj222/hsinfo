@@ -29,7 +29,7 @@ function get_attribute_type($attribute) {
 #------------------------------------------------------------------------------
 #   insert
 #------------------------------------------------------------------------------
-#INSERT INTO table_name (column1, column2, column3,...)
+#INSERT INTO $table (column1, column2, column3,...)
 #VALUES (value1, value2, value3,...);
 function mysql_insert_str($table, $data) {
     $attributes = array();
@@ -71,6 +71,46 @@ function mysql_where_str($constraints) {
         array_push($cons_strs, $constraint);
     }
     return get_sql_array_str($cons_strs, " AND ");
+}
+
+#SELECT Deck_mage_1.id AS id, Deck_mage_1.num AS num1, Deck_mage_2.num AS num2
+#FROM Deck_mage_1
+#LEFT JOIN Deck_mage_2
+#ON Deck_mage_1.id = Deck_mage_2.id
+#
+#UNION
+#
+#SELECT Deck_mage_2.id AS id, Deck_mage_1.num AS num1, Deck_mage_2.num AS num2
+#FROM Deck_mage_1
+#RIGHT JOIN Deck_mage_2
+#ON Deck_mage_1.id = Deck_mage_2.id
+function mysql_join_str($attr, $table1, $table1_attr, $table2, $table2_attr, $type = "INNER") {
+    $select_str_arr_1 = mysql_select_str_arr($table1, $table1_attr);
+    $select_str_arr_2 = mysql_select_str_arr($table2, $table2_attr);
+    $select_str_arr = array_merge($select_str_arr_1, $select_str_arr_2);
+    $select_str = implode(", ", $select_str_arr);
+    
+    $constraint = mysql_on_str($attr, $table1, $table2);
+    $query = "SELECT $select_str FROM $table1 $type JOIN $table2 ON $constraint";    
+    return $query;
+}
+
+function mysql_select_str_arr($table, $attributes) {
+    $arr = array();
+    foreach ($attributes as $key => $value) {
+        $select_str = "$table.$key AS $value";
+        array_push($arr, $select_str);
+    }
+    return $arr;
+}
+
+function mysql_on_str($attr, $table1, $table2) {
+    $arr = array();
+    foreach ($attr as $key => $value) {
+        $constraint = "$table1.$key = $table2.$value";
+        array_push($arr, $constraint);
+    }
+    return implode(" AND ", $arr);
 }
 
 function drop_table($table) {

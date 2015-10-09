@@ -1,1 +1,9 @@
-INSERT INTO Card (setType, setSeq, id, name, type, faction, rarity, cost, attack, health, text, flavor, artist, collectible, howToGetGold, mechanics) VALUES ('Basic', 1, 'EX1_066', 'Acidic Swamp Ooze', 'Minion', 'Alliance', 'Common', 2, 3, 2, 'Battlecry: Destroy your opponents weapon.', 'Oozes love Flamenco. Don't ask.', 'Chris Rahn', 1, 'Unlocked at Rogue Level 57.', 'Battlecry');
+SELECT *
+FROM Card
+INNER JOIN (
+    SELECT Deck_mage_1.id AS id, Deck_mage_1.num AS num1, Deck_mage_2.num
+    FROM Deck_mage_1
+    INNER JOIN Deck_mage_2
+    ON Deck_mage_1.id = Deck_mage_2.id
+) sub
+ON Card.id = sub.id;

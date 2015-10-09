@@ -1,0 +1,13 @@
+#SELECT Deck_mage_1.id AS id, Deck_mage_1.num AS num1, Deck_mage_2.num AS num2
+#FROM Deck_mage_1
+#LEFT JOIN Deck_mage_2
+#ON Deck_mage_1.id = Deck_mage_2.id
+#
+#UNION
+#
+#SELECT Deck_mage_2.id AS id, Deck_mage_1.num AS num1, Deck_mage_2.num AS num2
+#FROM Deck_mage_1
+#RIGHT JOIN Deck_mage_2
+#ON Deck_mage_1.id = Deck_mage_2.id
+
+SELECT Deck_mage_1.id AS id, Deck_mage_1.num AS num1, Deck_mage_2.num AS num2 FROM Deck_mage_1 LEFT JOIN Deck_mage_2 ON Deck_mage_1.id = Deck_mage_2.id UNION SELECT Deck_mage_1.num AS num1, Deck_mage_2.id AS id, Deck_mage_2.num AS num2 FROM Deck_mage_1 RIGHT JOIN Deck_mage_2 ON Deck_mage_1.id = Deck_mage_2.id

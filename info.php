@@ -15,6 +15,7 @@
     <ul>
         <li><a href="php/card_section.php">select Card</a></li>
         <li><a href="php/add_deck.php">add Deck</a></li>
+        <li><a href="php/compare_deck.php">compare Deck</a></li>
     </ul>
 
     <ul>

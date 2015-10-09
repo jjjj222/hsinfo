@@ -186,7 +186,7 @@
 
     <script>
         load_page();
-        //$("#main").load("php/add_form.php");
+        //$("#main").load("php/compare_form.php");
     </script>
 </body>
 </html>
