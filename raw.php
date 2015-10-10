@@ -12,5 +12,8 @@
         <li><a href="php/card_info.php">show Card</a></li>
         <li><a href="php/deck_info.php">show Deck</a></li>
     </ul>
+    <ul>
+        <li><a href="php/parse_deck.php">reset Deck</a></li>
+    </ul>
 </body>
 </html>
