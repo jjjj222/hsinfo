@@ -1,6 +1,7 @@
 table {
     /* width   : 100%; */
-    border  : thin solid black;
+    /* border  : thin solid black; */
+    border  : thin solid green;
     /* table-layout    : fixed; */
     text-align  : center;    
 }
@@ -18,4 +19,13 @@ aside {
     /* width:100px; */
     float:right;
     padding:5px;
+}
+
+table, td, th {
+    border: 1px solid green;
+}
+
+th {
+    background-color: green;
+    color: white;
 }

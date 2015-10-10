@@ -48,6 +48,10 @@ function print_add_form() {
     $class_values = get_attribute_values($CARD_TABLE_NAME, "playerClass");
     print_form_select("class", $class_values, get_current_post_value("class"), false);
     #echo "<br>";
+    echo "&nbsp;";
+    echo "&nbsp;";
+    echo "&nbsp;";
+    echo "&nbsp;";
 
     print_add_form_input_line("creator", $is_post, 40);
     print_add_form_input_line("link", $is_post);
@@ -72,7 +76,7 @@ function print_add_form() {
     }
     echo "</datalist>";
 
-    for ($i = 1; $i <= 25; ++$i) {
+    for ($i = 1; $i <= 30; ++$i) {
         $card_value = get_current_post_value("card_$i");
         #echo "card $i: <input list=\"card_name\" name=\"card_$i\" value=\"$card_value\">";
         echo "<input list=\"card_name\" name=\"card_$i\" value=\"$card_value\">";

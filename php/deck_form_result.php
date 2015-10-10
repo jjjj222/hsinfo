@@ -56,8 +56,15 @@ function print_deck_select_table($table, $attributes, $constraints) {
         echo "<tr id=\"$id\">";
         foreach ($attributes as $attr) {
             if ($attr != "id") {
+                $value = mysql_result($result, $i, $attr);
                 echo "<td>";
-                echo mysql_result($result, $i, $attr);
+                if ($attr == "link") {
+                    echo "<a href=\"$value\">";
+                    echo $value;
+                    echo "</a>";
+                } else {
+                    echo mysql_result($result, $i, $attr);
+                }
                 echo "</td>";
             }
         }
