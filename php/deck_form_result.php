@@ -21,6 +21,7 @@ mysql_close($link);
 <?php
 function print_deck_select_table($table, $attributes, $constraints) {
     array_push($attributes, "id");
+    #array_push($attributes, "delete");
     #var_dump($constraints);
     $attr_list_str = implode(', ', $attributes);
     $query = "SELECT $attr_list_str FROM $table";
@@ -28,7 +29,8 @@ function print_deck_select_table($table, $attributes, $constraints) {
         $cons_str = mysql_where_str($constraints);
         $query .= " WHERE $cons_str";
     }
-    $query .= ";";
+    #$query .= ";";
+    $query .= " ORDER BY name;";
     #print_msg($query);
 
     $result = mysql_query($query);
@@ -41,6 +43,7 @@ function print_deck_select_table($table, $attributes, $constraints) {
 
     echo "<table>";
     echo "<tr>";
+    array_push($attributes, "delete");
     foreach ($attributes as $attr) {
         if ($attr != "id") {
             echo "<th>";
@@ -55,7 +58,11 @@ function print_deck_select_table($table, $attributes, $constraints) {
         $id = mysql_result($result, $i, "id");
         echo "<tr id=\"$id\">";
         foreach ($attributes as $attr) {
-            if ($attr != "id") {
+            if ($attr == "delete") {
+                echo "<td>";
+                echo "<button name=\"$id\">delete</button>";
+                echo "</td>";
+            } else if ($attr != "id") {
                 $value = mysql_result($result, $i, $attr);
                 echo "<td>";
                 if ($attr == "link") {
@@ -90,6 +97,27 @@ $(document).ready(function(){
     });
 });
 
+$(document).ready(function(){
+    $("button").click(function(){
+        var id = $(this)[0].name;
+        //alert(id);
+        //console.log("my object: %o", id);
+        //$("#deck_table_side").html("qqqqqqqqqqqqq");
+        //var name_and_value = get_child_name_and_value($(this)[0]);
+        //var php_get_string = $.param(name_and_value);
+        ////console.log("my object: %o", php_get_string);
+        $.get("php/delete_deck.php?id=" + id, function(data, status){
+            //$("#deck_table_side").html(data);
+            var name_and_value = get_child_name_and_value($("#deck_form")[0]);
+            var php_get_string = $.param(name_and_value);
+            //console.log("my object: %o", php_get_string);
+            $.get("php/deck_form_result.php?" + php_get_string, function(data, status){
+                $("#deck_table").html(data);
+            });
+        });
+
+    });
+});
 //$(document).ready(function(){
 //    $("tr").click(function(){
 //        var id = $(this)[0].id;

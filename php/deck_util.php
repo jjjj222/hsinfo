@@ -94,6 +94,58 @@ function deck_get_cards($card_arr) {
     return $cards;
 }
 
+function get_deck_all_attr($id) {
+    global $DECK_TABLE_ATTR, $DECK_TABLE_NAME;
+
+    $attr_list_str = implode(', ', $DECK_TABLE_ATTR);
+    $query = "SELECT $attr_list_str FROM $DECK_TABLE_NAME WHERE id=\"$id\"";
+
+    $result = mysql_query($query);
+    $count = @mysql_numrows($result);
+    check_single_tuple($count, $id);
+
+    $all_attr = array();
+    foreach ($DECK_TABLE_ATTR as $attr) {
+        $value = mysql_result($result, 0, $attr);
+        $all_attr[$attr] = $value;
+    }
+    return $all_attr;
+}
+
+function get_deck_all_card($id) {
+    global $DECK_SINGLE_TABLE_ATTR;
+
+    $table = get_deck_table_name($id);
+
+    $attr_list_str = implode(', ', $DECK_SINGLE_TABLE_ATTR);
+    $query = "SELECT $attr_list_str FROM $table";
+
+    $result = mysql_query($query);
+    $num = @mysql_numrows($result);
+
+    $all_card = array();
+
+    $i = 0;
+    while ($i < $num) {
+        $card_id = "";
+        $card_num = 0;
+        foreach ($DECK_SINGLE_TABLE_ATTR as $attr) {
+            $value = mysql_result($result, $i, $attr);
+            #print_msg($value);
+            if ($attr == "id") {
+                $card_id = $value;
+            } else {
+                $card_num = $value;
+            }
+        }
+        #print_msg($card_id);
+        #print_msg($card_num);
+        $id_num = array($card_id, $card_num);
+        $all_card[$i] = $id_num;
+        $i++;
+    }
+    return $all_card;
+}
 
 function deck_count_card($cards) {
     $sum = 0;

@@ -21,48 +21,86 @@ mysql_close($link);
 
 <?php
 function print_add_form() {
-    global $CARD_TABLE_NAME, $CARD_VALID_ID_CONSTRAINT;
+    global $CARD_TABLE_NAME, $CARD_VALID_ID_CONSTRAINT, $DECK_TABLE_NAME;
 
     $is_post = false;
+    $is_load = false;
+    $is_update = false;
     $error = false;
 
     $data = array();
     $card = array();
+    $all_card = array();
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $is_post = true;
     }
 
+    $action = get_current_post_value("action");
+    if ($action == "load") {
+        $is_load = true;
+    } else if ($action == "update") {
+        $is_update = true;
+    }
+
+    $deck = get_current_post_value("deck");
+    if ($deck == "" && $is_load) {
+        $is_load = false;
+        $error = true;
+    } else {
+        $all_card = get_deck_all_card($deck);
+    }
+    #var_dump($all_card);
+
     $attributes = array("name", "class", "creator", "link", "comment");
-    foreach ($attributes as $attr) {
-        $data[$attr] = get_current_post_value($attr);
-        if ($data[$attr] == "") {
-            $error = true;
+    if ($is_load) {
+        $all_attr = get_deck_all_attr($deck);
+        foreach ($attributes as $attr) {
+            $data[$attr] = $all_attr[$attr];
+        }
+    } else {
+        foreach ($attributes as $attr) {
+            $data[$attr] = get_current_post_value($attr);
+            if ($attr != "comment" && $data[$attr] == "") {
+                $error = true;
+            }
         }
     }
 
     echo "<form id=\"add_form\">";
-    print_add_form_input_line("name", $is_post);
+    echo "deck: ";
+    $ids = get_attribute_values($DECK_TABLE_NAME, "id");
+    print_deck_compare_select("deck", $ids, $deck);
+    echo "&nbsp;";
+    echo "&nbsp;";
+    echo "&nbsp;";
+    echo "&nbsp;";
+    echo "<input type=\"submit\" name=\"submit\" value=\"load\" id=\"load_button\">";
+    echo "<br>";
+
+
+    print_add_form_input_line("name", $data, $is_post);
 
     echo "class: ";
     $class_values = get_attribute_values($CARD_TABLE_NAME, "playerClass");
-    print_form_select("class", $class_values, get_current_post_value("class"), false);
+    #print_form_select("class", $class_values, get_current_post_value("class"), false);
+    print_form_select("class", $class_values, $data["class"], false);
     #echo "<br>";
     echo "&nbsp;";
     echo "&nbsp;";
     echo "&nbsp;";
     echo "&nbsp;";
 
-    print_add_form_input_line("creator", $is_post, 40);
-    print_add_form_input_line("link", $is_post);
+    print_add_form_input_line("creator", $data, $is_post, 40);
+    print_add_form_input_line("link", $data, $is_post);
 
     echo "<br>";
     echo "comment: ";
     $comment_value = get_current_post_value("comment");
     echo "<textarea name=\"comment\" maxlength=\"255\">$comment_value</textarea>";
-    if ($is_post) {
-        check_empty($comment_value);
-    }
+    #if ($is_post) {
+    #    check_empty($comment_value);
+    #}
     echo "<br>";
     #echo "</form>";
 
@@ -76,11 +114,18 @@ function print_add_form() {
     }
     echo "</datalist>";
 
-    for ($i = 1; $i <= 30; ++$i) {
+    $all_card_size = count($all_card);
+    for ($i = 0; $i < 30; ++$i) {
         $card_value = get_current_post_value("card_$i");
+        if ($is_load & $i < $all_card_size) {
+            $card_value = get_card_name_by_id($all_card[$i][0]);
+        }
         #echo "card $i: <input list=\"card_name\" name=\"card_$i\" value=\"$card_value\">";
         echo "<input list=\"card_name\" name=\"card_$i\" value=\"$card_value\">";
         $card_num_value = get_current_post_value("card_num_$i");
+        if ($is_load & $i < $all_card_size) {
+            $card_num_value = $all_card[$i][1];
+        }
         echo "<input type=\"number\" name=\"card_num_$i\" min=\"1\" max=\"5\" value=\"$card_num_value\">";
         if ($card_value != "") {
             if (!in_array($card_value, $all_card_names)) {
@@ -96,7 +141,7 @@ function print_add_form() {
             }
         }
 
-        if (($i) % 5 == 0) {
+        if (($i+1) % 5 == 0) {
             echo "<br>";
         } else {
             echo "&nbsp;";
@@ -112,9 +157,10 @@ function print_add_form() {
 
 
     echo "<input type=\"submit\" name=\"submit\" value=\"add\" id=\"add_button\">";
+    echo "<input type=\"submit\" name=\"submit\" value=\"update\" id=\"update_button\">";
     echo "</form>";
 
-    if ($is_post && !$error) {
+    if ($is_post && !$error && !$is_load) {
         $data["id"] = get_deck_new_id($data["class"]);
 
         if ($data["num"] != 0) {
@@ -123,7 +169,12 @@ function print_add_form() {
             } 
 
             create_new_deck($data, $card);
-            echo "Add deck \"" . $data["name"] . "\" successfully";
+            if ($is_update) {
+                echo "Update";
+            } else {
+                echo "Add";
+            }
+            echo " deck \"" . $data["name"] . "\" successfully";
             echo "<br>";
         }
     }
@@ -139,9 +190,10 @@ function print_add_form() {
 ?>
 
 <?php
-function print_add_form_input_line($attr, $is_post, $maxlength=255) {
+function print_add_form_input_line($attr, $data, $is_post, $maxlength=255) {
     echo "$attr: ";
-    $value = get_current_post_value($attr);
+    #$value = get_current_post_value($attr);
+    $value = $data[$attr];
     print_form_input($attr, $value, $maxlength);
     if ($is_post) {
         check_empty($value);
@@ -164,18 +216,37 @@ $(document).ready(function(){
     $('#add_button').click(function(e) {
         e.preventDefault();
         var name_and_value = get_child_name_and_value($("#add_form")[0]);
-        //var php_get_string = $.param(name_and_value);
-        //alert (php_get_string);
-        //var name_and_value = get_child_name_and_value($("#add_form_card")[0]);
-        //var php_get_string = $.param(name_and_value);
-        //alert (php_get_string);
-        //$('ul').addClass('expanded');
-        //$('ul.expanded').fadeIn(300);
-        //console.log("my object: %o", name_and_value);
-        //return false;
         $.post("php/add_form.php", name_and_value, function(data, status){
             //alert("Data: " + data + "\nStatus: " + status);
             $("#main").html(data);
+        });
+    });
+});
+
+$(document).ready(function(){
+    $('#load_button').click(function(e) {
+        e.preventDefault();
+        var name_and_value = get_child_name_and_value($("#add_form")[0]);
+        name_and_value["action"] = "load";
+        $.post("php/add_form.php", name_and_value, function(data, status){
+            //alert("Data: " + data + "\nStatus: " + status);
+            $("#main").html(data);
+        });
+    });
+});
+
+$(document).ready(function(){
+    $('#update_button').click(function(e) {
+        e.preventDefault();
+        var name_and_value = get_child_name_and_value($("#add_form")[0]);
+        name_and_value["action"] = "update";
+        id = name_and_value["deck"];
+        //alert (id);
+        $.get("php/delete_deck.php?id=" + id, function(data, status){
+            $.post("php/add_form.php", name_and_value, function(data, status){
+                //alert("Data: " + data + "\nStatus: " + status);
+                $("#main").html(data);
+            });
         });
     });
 });

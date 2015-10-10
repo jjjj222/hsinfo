@@ -97,6 +97,7 @@
 
     <script>
         load_page();
+        //$("#main").load("php/add_form.php");
     </script>
 </body>
 </html>
