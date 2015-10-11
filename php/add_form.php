@@ -117,14 +117,22 @@ function print_add_form() {
     $all_card_size = count($all_card);
     for ($i = 0; $i < 30; ++$i) {
         $card_value = get_current_post_value("card_$i");
-        if ($is_load & $i < $all_card_size) {
-            $card_value = get_card_name_by_id($all_card[$i][0]);
+        if ($is_load) {
+            if ( $i < $all_card_size) {
+                $card_value = get_card_name_by_id($all_card[$i][0]);
+            } else {
+                $card_value = "";
+            }
         }
         #echo "card $i: <input list=\"card_name\" name=\"card_$i\" value=\"$card_value\">";
         echo "<input list=\"card_name\" name=\"card_$i\" value=\"$card_value\">";
         $card_num_value = get_current_post_value("card_num_$i");
-        if ($is_load & $i < $all_card_size) {
-            $card_num_value = $all_card[$i][1];
+        if ($is_load) {
+            if ($i < $all_card_size) {
+                $card_num_value = $all_card[$i][1];
+            } else {
+                $card_num_value = "";
+            }
         }
         echo "<input type=\"number\" name=\"card_num_$i\" min=\"1\" max=\"5\" value=\"$card_num_value\">";
         if ($card_value != "") {
