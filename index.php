@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Hearthstone Deck Collector</title>
-        <link rel="shortcut icon" href="pic/cacophony.jpg">
+        <link rel="shortcut icon" href="pic/jjjj222.jpg">
         <link type="text/css" rel="stylesheet" href="css/form.css">
         <link type="text/css" rel="stylesheet" href="css/color.css">
         <link type="text/css" rel="stylesheet" href="css/navi.css">
