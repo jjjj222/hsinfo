@@ -21,6 +21,13 @@ include "global.php";
 #------------------------------------------------------------------------------
 #   run
 #------------------------------------------------------------------------------
+echo "$servername";
+echo "</br>";
+echo "$username";
+echo "</br>";
+echo "$password";
+echo "</br>";
+
 # link mysql
 $link = @mysql_connect("$servername", "$username", "$password");
 if (!$link) {
